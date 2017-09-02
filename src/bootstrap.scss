@@ -1,0 +1,57 @@
+@import "~bulma/sass/utilities/initial-variables.sass";
+
+/* Color Definitions */
+$turquoise:         #C0C1D6;
+$turquoise-darker:  #6E7A98;
+$blue:              #7F86E2;
+$blue-light:        #9A9AA6;
+$blue-lighter:      #E8EAF0;
+$red:            #DD8B8B;
+
+/* Featuring font definition
+ * Nunito: Regular 400, SemiBold 600, SemiBold Italic 600i, Black 900
+ * Encode Sans: Bold 700 (For numerics)
+ */
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans:700|Nunito:400,600,600i,900');
+$family-featuring: "Nunito", $family-sans-serif;
+$family-featuring-numeric: "Encode Sans", $family-sans-serif;
+
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/base/_all.sass";
+@import "~bulma/sass/grid/_all.sass";
+@import "~bulma/sass/elements/button.sass";
+@import "~bulma/sass/elements/form.sass";
+@import "~bulma/sass/elements/content.sass";
+@import "~bulma/sass/elements/container.sass";
+
+/*
+ * Override default styles
+ * =======================
+ * Buttons, Form
+ */
+
+/* Buttons */
+.button.is-primary, .button.is-danger {
+  color: $white;
+  border-radius: 100px;
+  &:hover {
+    color: $white;
+  }
+}
+
+/* Form - Input */
+.input {
+  border-radius: 100px;
+  &.is-primary {
+    border-color: $turquoise-darker;
+    &.search-box {
+      padding-left: 20px;
+      padding-right: 20px;
+      font-family: $family-featuring;
+      font-weight: 600;
+      border-width: thick;
+      border-color: $turquoise;
+      box-shadow: none;
+    }
+  }
+}
