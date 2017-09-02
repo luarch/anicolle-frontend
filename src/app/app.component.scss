@@ -1,0 +1,23 @@
+@import "../constants";
+
+@include desktop {
+  header {
+    padding-top: 30px;
+  }
+}
+
+h1.logo {
+  color: $blue;
+  font-weight: 900;
+  font-size: 5em;
+  line-height: 1;
+  font-family: $family-featuring;
+  padding: 0;
+  margin: 0;
+}
+
+header .note {
+  padding: 1em 0;
+  color: $grey-light;
+  font-size: small;
+}
