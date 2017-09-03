@@ -11,7 +11,8 @@ export interface Bangumi {
   on_air_epi: number, // Placeholder
   on_air_day: number,
   seeker: string,
-  seekers_obj: Seeker[]
+  seekers_obj: Seeker[],
+  hide: boolean
 }
 
 export interface Seeker {
@@ -90,7 +91,7 @@ export class BangumiService {
 
   getBangumiCheckUp = (b: Bangumi): Promise<BangumiCheckUp[]> => {
     return new Promise<BangumiCheckUp[]>((resolve, reject) => {
-      let requestOptions = this._getRequestOptions("checkup/"+b.id);
+      let requestOptions = this._getRequestOptions("chkup/"+b.id);
 
       this.http.get(requestOptions.url, requestOptions)
       .catch(this.handleError)

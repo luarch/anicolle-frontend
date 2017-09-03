@@ -1,0 +1,23 @@
+<section class="section">
+  <div class="container">
+    <input class="search-box input is-primary is-large" type="text" placeholder="Search..." [(ngModel)]="keyword">
+    <div class="statistic-notes is-pulled-right">
+      <b>{{utils.getCurrentWeekDay()}}</b>. You have {{bangumis?.length}} bangumis.
+    </div>
+    <div class="is-clearfix"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <box *ngFor="let bangumi of (bangumis | bangumiSearch: keyword); index as i; trackBy: bangumiTrackBy" [(bangumi)]="bangumis[i]" [allSeekers]="seekers"></box>
+    <div class="is-clearfix"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="button is-primary plus-button is-pulled-right">+</div>
+    <div class="is-clearfix"></div>
+  </div>
+</section>

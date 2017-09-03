@@ -9,10 +9,13 @@ import { BangumiService } from './services/bangumi-service';
 import { SettingService } from './services/setting-service';
 
 import { SettingsPage } from './components/settings/settings-page';
+import { Mainboard, BangumiSearchPipe } from './components/mainboard/mainboard';
+import { Box } from './components/box/box';
 
 @NgModule({
   declarations: [
-    AppComponent, SettingsPage
+    AppComponent, SettingsPage, Mainboard, Box,
+    BangumiSearchPipe
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule

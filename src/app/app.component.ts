@@ -37,4 +37,8 @@ export class AppComponent {
   leaveSettings(saved?: boolean) {
     this.checkConnectivity();
   }
+
+  mainboardError() {
+    this.checkConnectivity();
+  }
 }

@@ -7,7 +7,7 @@ export const CONSTANTS = {
     5: 'Fri',
     6: 'Sat',
     7: 'Sun',
-    9: 'Und',
+    9: 'N/A',
     0: 'Fin'
   }, PAGE_STATE: {
     HOME: 'HOME',

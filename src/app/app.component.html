@@ -4,13 +4,10 @@
       <div class="column is-three-quarters">
         <h1 class="logo is-unselectable">Anicolle</h1>
       </div>
-      <div class="column" *ngIf="pageState == 'HOME'">
+      <div class="column is-hidden-touch" *ngIf="pageState == 'HOME'">
         <button class="button is-primary is-pulled-right" (click)="goToSettings()">Connection Settings</button>
+        <div class="is-clearfix"></div>
       </div>
-    </div>
-    <input class="search-box input is-primary is-large" type="text" placeholder="Search..." *ngIf="pageState == 'HOME'">
-    <div class="note is-pulled-right" *ngIf="pageState == 'HOME'">
-      {{utils.getCurrentWeekDay()}}. You have ? bangumis.
     </div>
   </div>
 </header>
@@ -28,3 +25,4 @@
 <settings-page *ngIf="pageState == 'SETTINGS'" (saved)="leaveSettings(true)" (cancelled)="leaveSettings()"></settings-page>
 
 <!-- Home -->
+<mainboard *ngIf="pageState == 'HOME'" (error)="mainboardError()"></mainboard>
