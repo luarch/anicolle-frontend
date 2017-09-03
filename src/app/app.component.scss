@@ -9,7 +9,7 @@
 h1.logo {
   color: $blue;
   font-weight: 900;
-  font-size: 5em;
+  font-size: 4.5em;
   line-height: 1;
   font-family: $family-featuring;
   padding: 0;
@@ -25,4 +25,11 @@ section.connection-error {
     line-height: 1;
     margin-top: 50px;
   }
+}
+
+.setting-button.is-hidden-desktop {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 11;
 }

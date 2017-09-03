@@ -1,6 +1,6 @@
-<section class="section">
+<section class="section mainboard-header">
   <div class="container">
-    <input class="search-box input is-primary is-large" type="text" placeholder="Search..." [(ngModel)]="keyword">
+    <search-box [(keyword)]="keyword"></search-box>
     <div class="statistic-notes is-pulled-right">
       <b>{{utils.getCurrentWeekDay()}}</b>. You have {{bangumis?.length}} bangumis.
     </div>
@@ -15,9 +15,11 @@
   </div>
 </section>
 
-<section class="section">
+<section class="section mainboard-footer">
   <div class="container">
     <div class="button is-primary plus-button is-pulled-right">+</div>
     <div class="is-clearfix"></div>
   </div>
 </section>
+
+<mobile-search-box [(keyword)]="keyword"></mobile-search-box>
