@@ -18,8 +18,13 @@ export class SettingService {
   }
 
   updateSetting(setting: Setting): boolean{
-    localStorage.setItem("anicolleUrl", setting.url);
-    localStorage.setItem("anicolleToken", setting.token);
-    return true;
+    if(setting.url && setting.token) {
+      localStorage.setItem("anicolleUrl", setting.url);
+      localStorage.setItem("anicolleToken", setting.token);
+      return true;
+    } else {
+      localStorage.clear();
+      return false;
+    }
   }
 };

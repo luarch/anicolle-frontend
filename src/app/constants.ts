@@ -9,5 +9,9 @@ export const CONSTANTS = {
     7: 'Sun',
     9: 'Und',
     0: 'Fin'
+  }, PAGE_STATE: {
+    HOME: 'HOME',
+    SETTINGS: 'SETTINGS',
+    CONNECTION_ERROR: 'CONNECTION_ERROR'
   }
 }

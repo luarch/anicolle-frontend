@@ -4,11 +4,27 @@
       <div class="column is-three-quarters">
         <h1 class="logo is-unselectable">Anicolle</h1>
       </div>
-      <div class="column">
-        <button class="button is-primary is-pulled-right">Connection Settings</button>
+      <div class="column" *ngIf="pageState == 'HOME'">
+        <button class="button is-primary is-pulled-right" (click)="goToSettings()">Connection Settings</button>
       </div>
     </div>
-    <input class="search-box input is-primary is-large" type="text" placeholder="Search...">
-    <div class="note is-pulled-right">Monday. You have ? bangumis.</div>
+    <input class="search-box input is-primary is-large" type="text" placeholder="Search..." *ngIf="pageState == 'HOME'">
+    <div class="note is-pulled-right" *ngIf="pageState == 'HOME'">
+      {{utils.getCurrentWeekDay()}}. You have ? bangumis.
+    </div>
   </div>
 </header>
+
+<!-- Connection Error -->
+<section class="section connection-error" *ngIf="pageState == 'CONNECTION_ERROR'">
+  <div class="container">
+    <div class="error-x">X</div>
+    <h2>Connection error, please check</h2>
+    <button class="button is-primary" (click)="goToSettings()">Connection Settings</button>
+  </div>
+</section>
+
+<!-- Settings -->
+<settings-page *ngIf="pageState == 'SETTINGS'" (saved)="leaveSettings(true)" (cancelled)="leaveSettings()"></settings-page>
+
+<!-- Home -->

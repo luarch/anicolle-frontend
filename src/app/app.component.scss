@@ -21,3 +21,14 @@ header .note {
   color: $grey-light;
   font-size: small;
 }
+
+section.connection-error {
+  text-align: center;
+  color: $grey-light;
+  .error-x {
+    font-family: $family-featuring;
+    font-size: 10em;
+    line-height: 1;
+    margin-top: 50px;
+  }
+}

@@ -6,6 +6,15 @@
 @import "~bulma/sass/elements/container.sass";
 @import "~bulma/sass/elements/icon.sass";
 
+@include touch{
+    header {
+        padding: 20px;
+    }
+    section {
+        padding: 8px;
+    }
+}
+
 /*
  * Override default styles
  * =======================
@@ -40,4 +49,13 @@
       box-shadow: none;
     }
   }
+}
+
+label.label {
+    color: $turquoise-darker;
+    font-family: $family-featuring;
+    font-size: 1em;
+    font-weight: 400;
+    position: relative;
+    bottom: -10px;
 }

@@ -1,0 +1,28 @@
+<section class="section">
+  <div class="container">
+    <h2 class="page-title">Connection Settings</h2>
+    <form>
+      <div class="columns is-desktop">
+        <div class="column is-one-quarter">
+
+          <div class="field">
+            <label for="settings-url" class="label">Connection URL</label>
+            <div class="control">
+              <input type="text" id="settings-url" class="input is-primary" [(ngModel)]="setting.url" name="settingsUrl">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="settings-token" class="label">Connection Token</label>
+            <div class="control">
+              <input type="password" id="settings-token" class="input is-primary" [(ngModel)]="setting.token" name="settingsToken">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="button is-primary" (click)="doSave()">Save</button>
+      <button class="button is-primary" (click)="doCancel()">Cancel</button>
+    </form>
+  </div>
+</section>
