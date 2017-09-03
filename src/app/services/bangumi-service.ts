@@ -35,15 +35,12 @@ export class BangumiService {
   ) {
   }
 
-  private _getRequestOptions = (endpoint: string, isPostForm: boolean = false): RequestOptions => {
+  private _getRequestOptions = (endpoint: string): RequestOptions => {
     let setting = this.settingSvc.getSetting();
     let requestOptions = new RequestOptions();
     requestOptions.url = this.utils.joinUrl(setting.url, endpoint);
     let headers = new Headers();
     headers.append("X-Auth-Token", setting.token);
-    if(isPostForm) {
-      headers.append("Content-Type", "multipart/form-data");
-    }
     requestOptions.headers = headers;
 
     return requestOptions;
@@ -138,7 +135,7 @@ export class BangumiService {
 
   updateBangumi = (b: Bangumi): Promise<Bangumi> => {
     return new Promise<Bangumi>((resolve, reject) => {
-      let requestOptions = this._getRequestOptions("update/"+b.id, true);
+      let requestOptions = this._getRequestOptions("modify/"+b.id);
       b.seeker = JSON.stringify(b.seekers_obj);
       let body = new FormData();
       body.append("name", b.name);
@@ -160,7 +157,7 @@ export class BangumiService {
 
   createBangumi = (b: Bangumi): Promise<Bangumi> => {
     return new Promise<Bangumi>((resolve, reject) => {
-      let requestOptions = this._getRequestOptions("add", true);
+      let requestOptions = this._getRequestOptions("add");
       b.seeker = JSON.stringify(b.seekers_obj);
       let body = new FormData();
       body.append("name", b.name);
