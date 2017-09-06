@@ -4,7 +4,7 @@ import { Utils } from '../../utils';
 
 let template = `
 <input class="search-box mobile label is-hidden-desktop" type="text" placeholder="Search..." [(ngModel)]="keyword" (ngModelChange)="onChange($event)" >
-<button class="button is-danger" *ngIf="keyword" (click)="doCancel()">Cancel</button>
+<button class="button is-danger is-hidden-desktop" *ngIf="keyword" (click)="doCancel()">Cancel</button>
 `;
 
 
