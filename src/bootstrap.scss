@@ -5,6 +5,7 @@
 @import "~bulma/sass/elements/form.sass";
 @import "~bulma/sass/elements/container.sass";
 @import "~bulma/sass/elements/icon.sass";
+@import "~bulma/sass/components/modal.sass";
 
 @include touch{
     header {
@@ -51,6 +52,17 @@
       border-color: $turquoise;
       box-shadow: none;
     }
+  }
+}
+
+.select {
+  &.is-primary {
+    select {
+      border-color: $turquoise-darker;
+    }
+  }
+  select {
+    border-radius: 100px;
   }
 }
 

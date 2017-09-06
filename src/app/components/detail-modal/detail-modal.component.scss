@@ -1,0 +1,73 @@
+@import "../../../constants";
+@import "../box/box.scss";
+
+.modal-background {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.modal-content {
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+button.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: none;
+  border: none;
+  z-index: 5;
+  outline: none;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+  &::after {
+    content: "X";
+    font-family: $family-featuring;
+    font-size: 3em;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+  }
+  &:active {
+    transform: translate(2px, 2px);
+    text-shadow: none;
+  }
+}
+
+.bangumi-box {
+  max-width: none;
+  width: 100%;
+  background-color: $white;
+  margin: 0;
+  h3 {
+    cursor: auto;
+  }
+  h4 {
+    font-family: $family-featuring;
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+  .on-air-indicator {
+    bottom: none;
+    top: 0;
+  }
+  .cur-epi-indicator {
+    position: relative;
+    b {
+      cursor: default;
+    }
+    .button-group {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}
+
+.bangumi-form {
+  width: 100%;
+  padding: 0;
+  display: block;
+  .columns {
+    width: 100%;
+    margin: 0;
+  }
+}
