@@ -36,15 +36,18 @@ export class DetailModalComponent implements OnInit, OnDestroy {
         this.b = new Bangumi();
       }
       // Assign seekers data
+      let seekers_obj = new Array<Seeker>();
       for(let seeker_name of this.seekers) {
-        if(this.b.seekers_obj.find((e)=>{return e.seeker === seeker_name})) {
-          continue;
+        let existing_seeker = this.b.seekers_obj.find(e=>e.seeker === seeker_name);
+        if(existing_seeker) {
+          seekers_obj.push(existing_seeker);
         } else {
-          this.b.seekers_obj.push(
+          seekers_obj.push(
             {seeker: seeker_name, chk_key: ""}
           );
         }
       }
+      this.b.seekers_obj = seekers_obj;
     }).catch(this.handleError);
   }
 
