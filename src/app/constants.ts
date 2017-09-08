@@ -13,5 +13,15 @@ export const CONSTANTS = {
     HOME: 'HOME',
     SETTINGS: 'SETTINGS',
     CONNECTION_ERROR: 'CONNECTION_ERROR'
-  }
+  }, ON_AIR_DAY_ARRAY: [
+    {value: 1, day: 'Mon'},
+    {value: 2, day: 'Tue'},
+    {value: 3, day: 'Wed'},
+    {value: 4, day: 'Thu'},
+    {value: 5, day: 'Fri'},
+    {value: 6, day: 'Sat'},
+    {value: 7, day: 'Sun'},
+    {value: 9, day: 'N/A'},
+    {value: 0, day: 'Fin'},
+  ]
 }

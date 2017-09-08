@@ -1,41 +1,55 @@
-<div class="modal" [class.is-active]="opened">
-  <div class="modal-background">
-
+<div class="modal is-active">
+  <div class="modal-background" (click)="close.emit()">
   </div>
   <div class="modal-content">
+    <button class="close" (click)="close.emit()"></button>
     <div class="bangumi-box">
-      <button class="close"></button>
-      <div class="on-air-indicator is-unselectable">Mon</div>
-      <h3>Sword Art Online</h3>
-      <div class="cur-epi-indicator">
-        <b>18</b>
-        <div class="button-group is-pulled-right">
-          <button class="button is-danger">
-            Cancel
-          </button>
-          <button class="button is-primary">
-            Save
-          </button>
+      <div *ngIf="bangumi">
+        <h3>{{bangumi?.name}}</h3>
+        <div class="on-air-indicator is-unselectable">
+          {{utils.onAirDayToString(bangumi?.on_air_day)}}
         </div>
-        <div class="is-clearfix"></div>
+        <div class="cur-epi-indicator">
+          <b>{{bangumi?.cur_epi}}</b>
+          <div class="button-group is-pulled-right">
+            <button class="button is-danger" (click)="delete()">
+              Delete
+            </button>
+            <button class="button is-primary" (click)="save()">
+              Save
+            </button>
+          </div>
+          <div class="is-clearfix"></div>
+        </div>
+      </div>
+      <div *ngIf="!bangumi">
+        <h3 class="new">New</h3>
+        <div class="cur-epi-indicator">
+          <div class="button-group is-pulled-right">
+            <button class="button is-primary" (click)="create()">
+              Create
+            </button>
+          </div>
+          <div class="is-clearfix"></div>
+        </div>
       </div>
       <div class="bangumi-form">
         <div class="columns">
           <div class="column is-half">
             <div class="field">
-              <label for="bangumi-name" class="label">Bangumi Name</label>
+              <label class="label">Bangumi Name</label>
               <div class="control">
-                <input type="text" class="input is-primary">
+                <input type="text" class="input is-primary" [(ngModel)]="b.name">
               </div>
             </div>
           </div>
           <div class="column is-one-quarter">
             <div class="field">
-              <label for="bangumi-updated-on" class="label">Updated On</label>
+              <label class="label">Updated On</label>
               <div class="control">
                 <div class="select is-primary">
-                  <select name="bangumi-updated-on">
-                    <option value="1">Mon</option>
+                  <select name="bangumi-updated-on" [(ngModel)]="b.on_air_day">
+                    <option *ngFor="let day of constants.ON_AIR_DAY_ARRAY" [ngValue]="day.value">{{day.day}}</option>
                   </select>
                 </div>
               </div>
@@ -43,40 +57,20 @@
           </div>
           <div class="column is-one-quarter">
             <div class="field">
-              <label for="bangumi-watched-episodes" class="label">Watched</label>
+              <label class="label">Watched</label>
               <div class="control">
-                <input type="number" class="input is-primary">
+                <input type="number" class="input is-primary" [(ngModel)]="b.cur_epi">
               </div>
             </div>
           </div>
         </div>
+        <h4>Seekers</h4>
         <div class="columns">
-          <div class="column">
-            <h4>Seekers</h4>
-          </div>
-        </div>
-        <div class="columns">
-          <div class="column is-half">
+          <div class="column is-half" *ngFor="let seeker of b.seekers_obj">
             <div class="field">
-              <label class="label">dmhy</label>
+              <label class="label">{{seeker.seeker}}</label>
               <div class="control">
-                <input type="text" class="input is-primary">
-              </div>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">dmhy</label>
-              <div class="control">
-                <input type="text" class="input is-primary">
-              </div>
-            </div>
-          </div>
-          <div class="column is-half">
-            <div class="field">
-              <label class="label">dmhy</label>
-              <div class="control">
-                <input type="text" class="input is-primary">
+                <input type="text" class="input is-primary" [(ngModel)]="seeker.chk_key">
               </div>
             </div>
           </div>

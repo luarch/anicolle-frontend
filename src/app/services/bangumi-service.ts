@@ -4,15 +4,15 @@ import { SettingService, Setting } from "./setting-service";
 import { Utils } from "../utils";
 import { Observable } from 'rxjs/Rx';
 
-export interface Bangumi {
-  id: number,
-  name: string,
-  cur_epi: number,
-  on_air_epi: number, // Placeholder
-  on_air_day: number,
-  seeker: string,
-  seekers_obj: Seeker[],
-  hide: boolean
+export class Bangumi {
+  id: number;
+  name: string;
+  cur_epi: number;
+  on_air_epi: number; // Placeholder
+  on_air_day: number;
+  seeker: string;
+  seekers_obj: Seeker[] = new Array<Seeker>();
+  hide: boolean;
 }
 
 export interface Seeker {
@@ -36,12 +36,15 @@ export class BangumiService {
   ) {
   }
 
-  private _getRequestOptions = (endpoint: string): RequestOptions => {
+  private _getRequestOptions = (endpoint: string, isPostForm?: boolean): RequestOptions => {
     let setting = this.settingSvc.getSetting();
     let requestOptions = new RequestOptions();
     requestOptions.url = this.utils.joinUrl(setting.url, endpoint);
     let headers = new Headers();
     headers.append("X-Auth-Token", setting.token);
+    if(isPostForm) {
+      headers.append("Content-Type", "application/x-www-form-urlencoded");
+    }
     requestOptions.headers = headers;
 
     return requestOptions;
@@ -136,15 +139,19 @@ export class BangumiService {
 
   updateBangumi = (b: Bangumi): Promise<Bangumi> => {
     return new Promise<Bangumi>((resolve, reject) => {
-      let requestOptions = this._getRequestOptions("modify/"+b.id);
+      let requestOptions = this._getRequestOptions("modify/"+b.id, true);
+      let new_seekers_obj: Seeker[] = new Array();
+      b.seekers_obj = b.seekers_obj.filter((e)=>{
+        return e.chk_key;
+      })
       b.seeker = JSON.stringify(b.seekers_obj);
-      let body = new FormData();
-      body.append("name", b.name);
-      body.append("cur_epi", b.cur_epi.toString());
-      body.append("on_air", b.on_air_day.toString());
-      body.append("seeker", b.seeker);
+      let body = new URLSearchParams();
+      body.set("name", b.name);
+      body.set("cur_epi", b.cur_epi.toString());
+      body.set("on_air", b.on_air_day.toString());
+      body.set("seeker", b.seeker);
 
-      this.http.post(requestOptions.url, body, requestOptions)
+      this.http.post(requestOptions.url, body.toString(), requestOptions)
       .catch(this.handleError)
       .subscribe((res: Response) => {
         let result: Bangumi = res.json();
@@ -158,15 +165,18 @@ export class BangumiService {
 
   createBangumi = (b: Bangumi): Promise<Bangumi> => {
     return new Promise<Bangumi>((resolve, reject) => {
-      let requestOptions = this._getRequestOptions("add");
+      let requestOptions = this._getRequestOptions("add", true);
       b.seeker = JSON.stringify(b.seekers_obj);
-      let body = new FormData();
-      body.append("name", b.name);
-      body.append("cur_epi", b.cur_epi.toString());
-      body.append("on_air", b.on_air_day.toString());
-      body.append("seeker", b.seeker);
+      b.seekers_obj = b.seekers_obj.filter((e)=>{
+        return e.chk_key;
+      })
+      let body = new URLSearchParams();
+      body.set("name", b.name);
+      body.set("cur_epi", b.cur_epi.toString());
+      body.set("on_air", b.on_air_day.toString());
+      body.set("seeker", b.seeker);
 
-      this.http.post(requestOptions.url, body, requestOptions)
+      this.http.post(requestOptions.url, body.toString(), requestOptions)
       .catch(this.handleError)
       .subscribe((res: Response) => {
         let result: Bangumi = res.json();
@@ -192,14 +202,14 @@ export class BangumiService {
     });
   }
 
-  getAllSeekers = (): Promise<Seeker[]> => {
-    return new Promise<Seeker[]>((resolve, reject) => {
+  getAllSeekers = (): Promise<string[]> => {
+    return new Promise<string[]>((resolve, reject) => {
       let requestOptions = this._getRequestOptions("get_seekers");
 
       this.http.get(requestOptions.url, requestOptions)
       .catch(this.handleError)
       .subscribe((res: Response) => {
-        let result: Seeker[] = res.json();
+        let result: string[] = res.json();
         resolve(result);
       }, (err: Response) => {
         reject(new Error(err.statusText));

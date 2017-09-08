@@ -6,7 +6,9 @@
 }
 
 .modal-content {
+  position: relative;
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
+  border: 1px solid $turquoise-darker;
 }
 
 button.close {
@@ -37,8 +39,16 @@ button.close {
   width: 100%;
   background-color: $white;
   margin: 0;
+  border: none;
   h3 {
     cursor: auto;
+    position: relative;
+    z-index: 3;
+    &.new {
+      margin-top: 10px;
+      font-size: 4em;
+      z-index: 0;
+    }
   }
   h4 {
     font-family: $family-featuring;
@@ -66,8 +76,8 @@ button.close {
   width: 100%;
   padding: 0;
   display: block;
+  clear: left;
   .columns {
-    width: 100%;
-    margin: 0;
+    flex-wrap: wrap;
   }
 }

@@ -6,6 +6,7 @@ import { Utils } from '../../utils';
 import { CONSTANTS } from '../../constants';
 import { BangumiService, Bangumi, Seeker } from '../../services/bangumi-service';
 import { SearchBox } from './search-box';
+import { DetailModalComponent } from '../detail-modal/detail-modal.component';
 import pinyin from 'pinyin';
 
 @Pipe({
@@ -51,11 +52,14 @@ export class BangumiSearchPipe implements PipeTransform {
   styleUrls: ['./mainboard.scss']
 })
 export class Mainboard implements OnInit {
-  seekers: Seeker[];
   bangumis: Bangumi[];
+  detailBangumi: Bangumi;
   keyword: string = "";
   @Output() error: EventEmitter<Error> = new EventEmitter();
   @ViewChild(SearchBox) private searchBox: SearchBox;
+  @ViewChild(DetailModalComponent) private detailModal: DetailModalComponent;
+
+  detailModalOpened = false;
 
   constructor(
     private utils: Utils,
@@ -86,12 +90,6 @@ export class Mainboard implements OnInit {
     })
     .catch(this.handleError);
 
-    this.bangumiSvc.getAllSeekers()
-    .then((data) => {
-      this.zone.run(()=>{
-        this.seekers = data;
-      });
-    }).catch(this.handleError);
   }
 
   bangumiTrackBy(index: number, item: Bangumi) {
@@ -102,4 +100,13 @@ export class Mainboard implements OnInit {
     console.log("Try focus");
   }
 
+  onOpenEdit(b: Bangumi) {
+    this.detailBangumi = b;
+    this.detailModalOpened = true;
+  }
+
+  doAddButtonClick() {
+    this.detailBangumi = null;
+    this.detailModalOpened = true;
+  }
 }
