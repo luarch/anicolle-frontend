@@ -8,7 +8,6 @@ import { BangumiService, Bangumi, Seeker } from '../../services/bangumi-service'
 import { SearchBox } from './search-box';
 import { DetailModalComponent } from '../detail-modal/detail-modal.component';
 import { UpdateModalComponent } from '../update-modal/update-modal.component';
-import pinyin from 'pinyin';
 
 @Pipe({
   name: "bangumiSearch",
@@ -27,10 +26,7 @@ export class BangumiSearchPipe implements PipeTransform {
     let on_air_day_match = keyword.match(/^w(\d)$/i);
     for(let b of value) {
       b.hide = true;
-      let bname_pinyin = pinyin(b.name, {
-        style: pinyin.STYLE_FIRST_LETTER
-      });
-      bname_pinyin = bname_pinyin.join('')
+      let bname_pinyin = ""; // TODO Add pinyin search support
 
       if(b.name.toLowerCase().includes(keyword.toLowerCase())) {
         // General Search
@@ -61,7 +57,7 @@ export class Mainboard implements OnInit {
   @ViewChild(UpdateModalComponent) private updateModal: UpdateModalComponent;
 
   constructor(
-    private utils: Utils,
+    public utils: Utils,
     private bangumiSvc: BangumiService,
     private hotkeySvc: HotkeysService,
     private zone: NgZone
