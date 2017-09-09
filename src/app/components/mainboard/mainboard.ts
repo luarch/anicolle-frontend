@@ -26,12 +26,11 @@ export class BangumiSearchPipe implements PipeTransform {
     let on_air_day_match = keyword.match(/^w(\d)$/i);
     for(let b of value) {
       b.hide = true;
-      let bname_pinyin = ""; // TODO Add pinyin search support
 
       if(b.name.toLowerCase().includes(keyword.toLowerCase())) {
         // General Search
         b.hide = false;
-      } else if(bname_pinyin.includes(keyword.toLowerCase())) {
+      } else if(b.name_pinyin.includes(keyword.toLowerCase())) {
         // Pinyin Search
         b.hide = false;
       } else if(on_air_day_match && on_air_day_match[1] === b.on_air_day.toString()) {

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Rx';
 export class Bangumi {
   id: number;
   name: string;
+  name_pinyin: string;
   cur_epi: number;
   on_air_epi: number; // Placeholder
   on_air_day: number;
