@@ -6,6 +6,12 @@
   }
 }
 
+@include touch {
+  header {
+    padding-top: 80px;
+  }
+}
+
 h1.logo {
   color: $blue;
   font-weight: 900;
@@ -30,6 +36,6 @@ section.connection-error {
 .setting-button.is-hidden-desktop {
   position: fixed;
   right: 14px;
-  bottom: 14px;
+  top: 14px;
   z-index: 11;
 }

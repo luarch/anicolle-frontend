@@ -33,4 +33,12 @@ export class Utils {
     }
     return results;
   }
+
+  lockBody() {
+    // TODO
+  }
+
+  unlockBody() {
+    // TODO
+  }
 }

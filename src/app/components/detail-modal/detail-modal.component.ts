@@ -55,12 +55,12 @@ export class DetailModalComponent implements OnInit {
 
     // Set open
     this.opened = true;
-    document.body.style.overflow = "hidden";
+    this.utils.lockBody();
   }
 
   close() {
     this.opened = false;
-    document.body.style.overflow = "auto";
+    this.utils.unlockBody();
   }
 
   ngOnInit() {

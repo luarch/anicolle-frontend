@@ -9,6 +9,7 @@
   position: relative;
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
   border: 1px solid $turquoise-darker;
+  overflow: auto;
 }
 
 button.close {

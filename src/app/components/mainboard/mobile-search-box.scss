@@ -1,6 +1,8 @@
+@import "../../../constants";
+
 .button.is-danger {
   position: fixed;
   right: 110px;
-  bottom: 14px;
+  top: 14px;
   z-index: 12;
 }

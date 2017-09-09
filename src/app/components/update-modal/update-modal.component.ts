@@ -34,7 +34,7 @@ export class UpdateModalComponent implements OnInit {
       this.hasError = true;
     });
     this.opened = true;
-    document.body.style.overflow = "hidden";
+    this.utils.lockBody();
   }
 
   getSafeUrl(url: string) {
@@ -44,7 +44,7 @@ export class UpdateModalComponent implements OnInit {
   close() {
     if(!this.loadingInd) {
       this.opened = false;
-      document.body.style.overflow = "auto";
+      this.utils.unlockBody();
     }
   }
 }
