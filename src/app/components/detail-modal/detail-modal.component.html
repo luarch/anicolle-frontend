@@ -1,8 +1,8 @@
-<div class="modal is-active">
-  <div class="modal-background" (click)="close.emit()">
+<div class="modal is-active" [class.is-active]="opened">
+  <div class="modal-background" (click)="close()">
   </div>
   <div class="modal-content">
-    <button class="close" (click)="close.emit()"></button>
+    <button class="close" (click)="close()"></button>
     <div class="bangumi-box">
       <div *ngIf="bangumi">
         <h3>{{bangumi?.name}}</h3>

@@ -24,4 +24,4 @@
 
 <mobile-search-box [(keyword)]="keyword"></mobile-search-box>
 
-<detail-modal [bangumi]="detailBangumi" (bangumiUpdated)="doLoad()" (close)="detailModalOpened = false" *ngIf="detailModalOpened"></detail-modal>
+<detail-modal (bangumiUpdated)="doLoad()"></detail-modal>

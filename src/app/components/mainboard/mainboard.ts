@@ -53,13 +53,10 @@ export class BangumiSearchPipe implements PipeTransform {
 })
 export class Mainboard implements OnInit {
   bangumis: Bangumi[];
-  detailBangumi: Bangumi;
   keyword: string = "";
   @Output() error: EventEmitter<Error> = new EventEmitter();
   @ViewChild(SearchBox) private searchBox: SearchBox;
   @ViewChild(DetailModalComponent) private detailModal: DetailModalComponent;
-
-  detailModalOpened = false;
 
   constructor(
     private utils: Utils,
@@ -101,12 +98,10 @@ export class Mainboard implements OnInit {
   }
 
   onOpenEdit(b: Bangumi) {
-    this.detailBangumi = b;
-    this.detailModalOpened = true;
+    this.detailModal.open(b);
   }
 
   doAddButtonClick() {
-    this.detailBangumi = null;
-    this.detailModalOpened = true;
+    this.detailModal.open(null);
   }
 }
