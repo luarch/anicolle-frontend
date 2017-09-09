@@ -1,0 +1,41 @@
+/* Origin: 'https://fonts.proxy.ustclug.org/css?family=Encode+Sans:700|Nunito:400,600,600i,900' */
+/* latin */
+@font-face {
+  font-family: 'Encode Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Encode Sans Bold'), local('EncodeSans-Bold'), url(fonts/IaOhmWC4W3-qZLH1UUd4vP79_ZuUxCigM2DespTnFaw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: italic;
+  font-weight: 600;
+  src: local('Nunito SemiBold Italic'), local('Nunito-SemiBoldItalic'), url(fonts/PcNqAMqDrzfKE6Iowq7NvIgp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Nunito Regular'), local('Nunito-Regular'), url(fonts/6TbRXKWJjpj6V2v_WyRbMevvDin1pK8aKteLpeZ5c0A.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Nunito SemiBold'), local('Nunito-SemiBold'), url(fonts/NcqjkPJTQZlJIFxZdZcTe5Bw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin */
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Nunito Black'), local('Nunito-Black'), url(fonts/Cj2facSP9LFhbctU5GJ2WJBw1xU1rKptJj_0jans920.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
