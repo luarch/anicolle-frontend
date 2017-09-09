@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { BangumiCheckUp } from '../../services/bangumi-service';
 import { Utils } from '../../utils';
 
@@ -14,7 +15,8 @@ export class UpdateModalComponent implements OnInit {
   data: BangumiCheckUp[] = new Array();
 
   constructor(
-    private utils: Utils
+    private utils: Utils,
+    private domSanitaizer: DomSanitizer
   ) { }
 
   ngOnInit() {
@@ -33,6 +35,10 @@ export class UpdateModalComponent implements OnInit {
     });
     this.opened = true;
     document.body.style.overflow = "hidden";
+  }
+
+  getSafeUrl(url: string) {
+    return this.domSanitaizer.bypassSecurityTrustUrl(url);
   }
 
   close() {

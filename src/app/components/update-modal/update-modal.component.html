@@ -3,7 +3,7 @@
   <div class="modal-content">
     <button *ngIf="!loadingInd" class="close" (click)="close()"></button>
     <h3 *ngIf="!loadingInd && !hasError && data?.length">Check Updates</h3>
-    <h3 *ngIf="loadingInd">Loading...</h3>
+    <h3 *ngIf="loadingInd">Checking Updates...</h3>
     <h3 *ngIf="!loadingInd && !hasError && !data?.length">No Update</h3>
     <h3 *ngIf="!loadingInd && hasError">Update Error</h3>
     <div class="bangumi-checkup" *ngFor="let item of data">
@@ -11,7 +11,7 @@
         {{item.title}}
       </div>
       <div class="link">
-        <a href="{{item.link}}">
+        <a [attr.href]="getSafeUrl(item.link)">
           {{item.link}}
         </a>
       </div>
