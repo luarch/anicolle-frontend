@@ -10,7 +10,7 @@
 
 <section class="section">
   <div class="container">
-    <box *ngFor="let bangumi of (bangumis | bangumiSearch: keyword); index as i; trackBy: bangumiTrackBy" [(bangumi)]="bangumis[i]" [allSeekers]="seekers" (openEdit)="onOpenEdit($event)"></box>
+    <box *ngFor="let bangumi of (bangumis | bangumiSearch: keyword); index as i; trackBy: bangumiTrackBy" [(bangumi)]="bangumis[i]" [allSeekers]="seekers" (openEdit)="onOpenEdit($event)" (checkedUp)="onCheckedUp($event)"></box>
     <div class="is-clearfix"></div>
   </div>
 </section>
@@ -25,3 +25,4 @@
 <mobile-search-box [(keyword)]="keyword"></mobile-search-box>
 
 <detail-modal (bangumiUpdated)="doLoad()"></detail-modal>
+<update-modal></update-modal>

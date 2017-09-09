@@ -16,12 +16,14 @@ import { SearchBox } from './components/mainboard/search-box';
 import { MobileSearchBox } from './components/mainboard/mobile-search-box';
 import { Box } from './components/box/box';
 import { DetailModalComponent } from './components/detail-modal/detail-modal.component';
+import { UpdateModalComponent } from './components/update-modal/update-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent, SettingsPage, Mainboard, Box, SearchBox, MobileSearchBox,
     BangumiSearchPipe,
-    DetailModalComponent
+    DetailModalComponent,
+    UpdateModalComponent
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule,

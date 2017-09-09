@@ -7,6 +7,7 @@ import { CONSTANTS } from '../../constants';
 import { BangumiService, Bangumi, Seeker } from '../../services/bangumi-service';
 import { SearchBox } from './search-box';
 import { DetailModalComponent } from '../detail-modal/detail-modal.component';
+import { UpdateModalComponent } from '../update-modal/update-modal.component';
 import pinyin from 'pinyin';
 
 @Pipe({
@@ -57,6 +58,7 @@ export class Mainboard implements OnInit {
   @Output() error: EventEmitter<Error> = new EventEmitter();
   @ViewChild(SearchBox) private searchBox: SearchBox;
   @ViewChild(DetailModalComponent) private detailModal: DetailModalComponent;
+  @ViewChild(UpdateModalComponent) private updateModal: UpdateModalComponent;
 
   constructor(
     private utils: Utils,
@@ -103,5 +105,9 @@ export class Mainboard implements OnInit {
 
   doAddButtonClick() {
     this.detailModal.open(null);
+  }
+
+  onCheckedUp(p: any) {
+    this.updateModal.open(p);
   }
 }
