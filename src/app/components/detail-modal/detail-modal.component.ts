@@ -19,7 +19,9 @@ export class DetailModalComponent implements OnInit {
   constructor(
     private utils: Utils,
     private bangumiSvc: BangumiService
-  ) { }
+  ) {
+    this.handleError = this.handleError.bind(this);
+  }
 
   handleError() {
     // TODO Handle error
@@ -67,7 +69,7 @@ export class DetailModalComponent implements OnInit {
       this.seekers = data.sort(
         (a, b) => a<=b ? -1 : 1
       );
-    }).catch(()=>this.handleError());
+    }).catch(this.handleError);
   }
 
   save() {
@@ -75,7 +77,7 @@ export class DetailModalComponent implements OnInit {
     .then(()=>{
       this.bangumiUpdated.emit();
       this.close();
-    }).catch(()=>this.handleError());
+    }).catch(this.handleError);
   }
 
   delete() {
@@ -83,7 +85,7 @@ export class DetailModalComponent implements OnInit {
     .then(()=>{
       this.bangumiUpdated.emit();
       this.close();
-    }).catch(()=>this.handleError());
+    }).catch(this.handleError);
   }
 
   create() {
@@ -91,6 +93,6 @@ export class DetailModalComponent implements OnInit {
     .then(()=>{
       this.bangumiUpdated.emit();
       this.close();
-    }).catch(()=>this.handleError());
+    }).catch(this.handleError);
   }
 }
