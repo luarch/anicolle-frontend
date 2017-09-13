@@ -43,6 +43,7 @@ html, body {
   }
 }
 
+
 /* Form - Input */
 .input {
   border-radius: 100px;
@@ -98,6 +99,16 @@ label.label {
     font-weight: 400;
     position: relative;
     bottom: -10px;
+}
+
+/* Anchor */
+a.is-no-style {
+  color: inherit;
+  border: none;
+  border-radius: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Container Sizes */
