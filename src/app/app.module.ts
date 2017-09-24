@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 
 import { HotkeyModule } from 'angular2-hotkeys';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { AppComponent } from './app.component';
 import { Utils } from './utils';
@@ -27,7 +28,8 @@ import { UpdateModalComponent } from './components/update-modal/update-modal.com
   ],
   imports: [
     BrowserModule, HttpModule, FormsModule,
-    HotkeyModule.forRoot()
+    HotkeyModule.forRoot(),
+    ClipboardModule
   ],
   providers: [
     Utils,

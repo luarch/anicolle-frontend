@@ -51,6 +51,7 @@ button.close {
 
 .bangumi-checkup {
   margin: 20px 0;
+  position: relative;
   .title, .link {
     width: 100%;
     overflow: hidden;
@@ -61,5 +62,10 @@ button.close {
     color: $grey-light;
     font-style: italic;
     text-decoration: underline;
+  }
+  .button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
 }

@@ -15,6 +15,7 @@
           {{item.link}}
         </a>
       </div>
+      <button ngxClipboard [cbContent]="item.link" class="button is-primary is-small" (cbOnSuccess)="item.copied=true">{{item.copied ? 'Copied' : 'Copy'}}</button>
     </div>
   </div>
 </div>
