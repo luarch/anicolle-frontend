@@ -82,14 +82,19 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  &:focus, &:hover {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  &:focus {
     outline: none;
-    opacity: 1;
+  }
+  &:hover {
+    outline: none;
+    background-color: rgba(255, 255, 255, 1);
   }
   border: none;
   border-bottom: 1px solid $turquoise;
   border-radius: 0;
-  opacity: 0.9;
+  background-color: rgba(255, 255, 255, 0.9);
   font-size: 1.2em;
   padding: 1em;
   z-index: 10;
