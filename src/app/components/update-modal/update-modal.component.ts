@@ -41,6 +41,13 @@ export class UpdateModalComponent implements OnInit {
     return this.domSanitaizer.bypassSecurityTrustUrl(url);
   }
 
+  onLinkCopied(item: BangumiCheckUp) {
+    item['copied'] = true;
+    setTimeout(()=> {
+      item['copied'] = false;
+    }, 1000);
+  }
+
   close() {
     if(!this.loadingInd) {
       this.opened = false;

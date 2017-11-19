@@ -32,6 +32,7 @@ button.close {
   box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.4);
   padding: 10px;
   margin-top: -8px;
+  -webkit-overflow-scrolling: touch;
 
   h3 {
     font-size: 2em;
