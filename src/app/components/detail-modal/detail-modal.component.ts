@@ -81,11 +81,13 @@ export class DetailModalComponent implements OnInit {
   }
 
   delete() {
-    this.bangumiSvc.deleteBangumi(this.b)
-    .then(()=>{
-      this.bangumiUpdated.emit();
-      this.close();
-    }).catch(this.handleError);
+    if(confirm("Please confirm deleting this bangumi.")) {
+      this.bangumiSvc.deleteBangumi(this.b)
+      .then(()=>{
+        this.bangumiUpdated.emit();
+        this.close();
+      }).catch(this.handleError);
+    }
   }
 
   create() {
