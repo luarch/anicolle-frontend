@@ -5,7 +5,7 @@
         <h1 class="logo is-unselectable">Anicolle</h1>
       </div>
       <div class="column is-hidden-touch" *ngIf="pageState == 'HOME'">
-        <button class="button is-primary is-pulled-right" (click)="goToSettings()">Connection Settings</button>
+        <button class="button is-primary is-pulled-right" (click)="goToSettings()">Settings</button>
         <div class="is-clearfix"></div>
       </div>
     </div>
@@ -17,7 +17,7 @@
   <div class="container">
     <div class="error-x">X</div>
     <h2>Connection error, please check</h2>
-    <button class="button is-primary" (click)="goToSettings()">Connection Settings</button>
+    <button class="button is-primary" (click)="goToSettings()">Settings</button>
   </div>
 </section>
 
