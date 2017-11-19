@@ -86,7 +86,7 @@ export class DetailModalComponent implements OnInit {
   }
 
   delete() {
-    if(confirm("Please confirm deleting this bangumi.")) {
+    if(confirm("Please confirm deleting this bangumi:\n\t"+this.b.name)) {
       this.bangumiSvc.deleteBangumi(this.b)
       .then(()=>{
         this.bangumiUpdated.emit();
