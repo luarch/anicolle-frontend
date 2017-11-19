@@ -87,15 +87,12 @@ body {
   -webkit-backdrop-filter: blur(10px);
   &:focus {
     outline: none;
-  }
-  &:hover {
-    outline: none;
     background-color: rgba(255, 255, 255, 1);
   }
   border: none;
   border-bottom: 1px solid $turquoise;
   border-radius: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   font-size: 1.2em;
   padding: 1em;
   z-index: 10;
