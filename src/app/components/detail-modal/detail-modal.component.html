@@ -15,7 +15,7 @@
             <button class="button is-danger" (click)="delete()">
               Delete
             </button>
-            <button class="button is-primary" (click)="save()">
+            <button class="button is-primary" [disabled]="!isBangumiValid" (click)="save()">
               Save
             </button>
           </div>
@@ -26,7 +26,7 @@
         <h3 class="new">New</h3>
         <div class="cur-epi-indicator">
           <div class="button-group is-pulled-right">
-            <button class="button is-primary" (click)="create()">
+            <button class="button is-primary" [disabled]="!isBangumiValid" (click)="create()">
               Create
             </button>
           </div>

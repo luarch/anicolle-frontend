@@ -15,6 +15,9 @@ export class DetailModalComponent implements OnInit {
   b: Bangumi = new Bangumi();
   constants = CONSTANTS;
   opened: boolean = false;
+  get isBangumiValid() {
+    return this.bangumiSvc.validateBangumi(this.b);
+  }
 
   constructor(
     private utils: Utils,
@@ -23,9 +26,11 @@ export class DetailModalComponent implements OnInit {
     this.handleError = this.handleError.bind(this);
   }
 
-  handleError() {
-    // TODO Handle error
-    this.close();
+  handleError(err: Error) {
+    if(err) {
+      console.error("unhandled error "+ err.message);
+      this.close();
+    }
   }
 
   assignSeekers() {

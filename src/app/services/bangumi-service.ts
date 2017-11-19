@@ -56,6 +56,14 @@ export class BangumiService {
     return Observable.throw(error);
   }
 
+  validateBangumi = (bangumi: Bangumi): boolean => {
+    if(bangumi && bangumi.cur_epi!=null && bangumi.name!=null && bangumi.on_air_day!=null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   getCheckPoint = (): Promise<null> => {
     return new Promise((resolve, reject) => {
       let requestOptions: RequestOptions;
