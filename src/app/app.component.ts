@@ -20,6 +20,9 @@ export class AppComponent {
     private settingSvc: SettingService
   ) {
     this.checkConnectivity();
+
+    // Enable :active styles
+    document.addEventListener("touchstart", function(){}, true);
   }
 
   checkConnectivity() {
