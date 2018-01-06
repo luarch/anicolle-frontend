@@ -1,9 +1,9 @@
-import { Component, Input, Output, EventEmitter, Renderer, ElementRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer, ViewChild } from '@angular/core';
 
 import { Utils } from '../../utils';
 
 let template = `
-<input class="search-box input is-primary is-large is-hidden-touch" type="text" placeholder="Search..." [(ngModel)]="keyword" (ngModelChange)="onChange($event)">
+<input #desktopSearchbar class="search-box input is-primary is-large is-hidden-touch" type="text" placeholder="Search..." [(ngModel)]="keyword" (ngModelChange)="onChange($event)">
 `;
 
 
@@ -11,9 +11,10 @@ let template = `
   selector: 'search-box',
   template
 })
-export class SearchBox {
+export class SearchBox implements OnInit {
   @Input() keyword: string;
   @Output() keywordChange: EventEmitter<string> = new EventEmitter();
+  @ViewChild("desktopSearchbar") desktopSearchbar: ElementRef;
 
   constructor(
     private utils: Utils,
@@ -21,11 +22,16 @@ export class SearchBox {
     private elementRef: ElementRef
   ) {}
 
-  doFocus() {
-    this.elementRef.nativeElement.focus();
-    this.renderer.invokeElementMethod(
-      this.elementRef.nativeElement, 'focus', []
-    );
+  ngOnInit() {
+    this.doFocus()
+  }
+
+  public doFocus() {
+    if(this.desktopSearchbar){
+      this.renderer.invokeElementMethod(
+        this.desktopSearchbar.nativeElement, 'focus', []
+      );
+    }
   }
 
   onChange(newKeyword: string) {

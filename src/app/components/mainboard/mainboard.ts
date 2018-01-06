@@ -1,13 +1,13 @@
-import { Component, OnInit, Output, EventEmitter, Pipe, PipeTransform, ViewChild, NgZone } from '@angular/core';
+import { Bangumi, BangumiService, Seeker } from '../../services/bangumi-service';
+import { Component, EventEmitter, NgZone, OnInit, Output, Pipe, PipeTransform, ViewChild } from '@angular/core';
+import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 
-import { HotkeysService, Hotkey } from 'angular2-hotkeys';
-
-import { Utils } from '../../utils';
 import { CONSTANTS } from '../../constants';
-import { BangumiService, Bangumi, Seeker } from '../../services/bangumi-service';
-import { SearchBox } from './search-box';
 import { DetailModalComponent } from '../detail-modal/detail-modal.component';
+import { MobileSearchBox } from './mobile-search-box';
+import { SearchBox } from './search-box';
 import { UpdateModalComponent } from '../update-modal/update-modal.component';
+import { Utils } from '../../utils';
 
 @Pipe({
   name: "bangumiSearch",
@@ -52,6 +52,7 @@ export class Mainboard implements OnInit {
   keyword: string = "";
   @Output() error: EventEmitter<Error> = new EventEmitter();
   @ViewChild(SearchBox) private searchBox: SearchBox;
+  @ViewChild(MobileSearchBox) private mobileSearchBox: MobileSearchBox;
   @ViewChild(DetailModalComponent) private detailModal: DetailModalComponent;
   @ViewChild(UpdateModalComponent) private updateModal: UpdateModalComponent;
 
@@ -61,8 +62,9 @@ export class Mainboard implements OnInit {
     private hotkeySvc: HotkeysService,
     private zone: NgZone
   ) {
-    this.hotkeySvc.add(new Hotkey("alt+f", (event: KeyboardEvent): boolean=> {
+    this.hotkeySvc.add(new Hotkey(["meta+f", "ctrl+f"], (event: KeyboardEvent): boolean=> {
       this.searchBox.doFocus();
+      this.mobileSearchBox.doFocus();
       return false;
     }));
   }
