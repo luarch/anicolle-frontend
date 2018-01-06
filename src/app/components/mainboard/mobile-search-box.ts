@@ -17,7 +17,7 @@ export class MobileSearchBox implements OnInit {
   @Input() keyword: string;
   @Output() keywordChange: EventEmitter<string> = new EventEmitter();
   @ViewChild("mobileSearchbar") mobileSearchbar: ElementRef;
-  private focused: boolean = false;
+  focused: boolean = false;
 
   constructor(
     private utils: Utils,
