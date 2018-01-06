@@ -1,11 +1,11 @@
 <div class="bangumi-box" *ngIf="!bangumi.hide">
   <div class="on-air-indicator is-unselectable">{{utils.onAirDayToString(bangumi.on_air_day)}}</div>
   <h3 title="{{bangumi.name}}" (click)="enterEdit()">
-    <a class="is-no-style">
+    <a class="is-no-style is-unselectable">
       {{bangumi.name}}
     </a>
   </h3>
-  <div class="cur-epi-indicator">
+  <div class="cur-epi-indicator is-unselectable">
     <b (click)="doCheckUp()">
       <a class="is-no-style">{{loadingCurEpi ? '...' : bangumi.cur_epi}}</a>
     </b>
