@@ -34,7 +34,7 @@
       display: inline-block;
       text-align: center;
       margin-left: 20px;
-      .up, .down {
+      .action-plus, .action-decrease {
         cursor: pointer;
         clear: both;
         font-family: $family-featuring;
@@ -44,12 +44,12 @@
         height: 20px;
         line-height: 20px;
       }
-      .up {
+      .action-plus {
         margin-top: 10px;
         transform: scale(2);
         color: $black;
       }
-      .down {
+      .action-decrease {
         margin-top: 10px;
         transform: scale(1.3);
         color: $grey-light;
