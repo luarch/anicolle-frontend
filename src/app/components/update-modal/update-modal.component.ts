@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { BangumiCheckUp } from '../../services/bangumi-service';
+import { BangumiCheckUp, BangumiCheckUpIntent, BangumiService } from '../../services/bangumi-service';
 import { Utils } from '../../utils';
 
 @Component({
@@ -13,28 +13,49 @@ export class UpdateModalComponent implements OnInit {
   loadingInd: boolean = false;
   hasError: boolean = false;
   data: BangumiCheckUp[] = new Array();
+  intent: BangumiCheckUpIntent = null;
 
   constructor(
     private utils: Utils,
-    private domSanitaizer: DomSanitizer
+    private domSanitaizer: DomSanitizer,
+    private bangumiSvc: BangumiService
   ) { }
 
   ngOnInit() {
   }
 
-  open(p: Promise<BangumiCheckUp[]>) {
+  open(intent: BangumiCheckUpIntent) {
     this.hasError = false;
     this.loadingInd = true;
     this.data = new Array();
-    p.then((data)=> {
+    if(!intent.episode) {
+      intent.episode = intent.bangumi.cur_epi+1;
+    }
+    this.intent = intent;
+    intent.p.then((data)=> {
       this.loadingInd = false;
       this.data = data;
-    }).catch(()=>{
+    }).catch((e)=>{
+      console.log(e);
       this.loadingInd = false;
       this.hasError = true;
     });
     this.opened = true;
     this.utils.lockBody();
+  }
+
+  checkNextEpisode() {
+    let p = this.bangumiSvc.getBangumiCheckUp(
+      this.intent.bangumi,
+      this.intent.episode+1);
+
+    var newIntent: BangumiCheckUpIntent = {
+      bangumi: this.intent.bangumi,
+      episode: this.intent.episode+1,
+      p
+    };
+
+    this.open(newIntent);
   }
 
   getSafeUrl(url: string) {

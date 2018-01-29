@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Utils } from '../../utils';
 import { CONSTANTS } from '../../constants';
-import { BangumiService, Bangumi, Seeker, BangumiCheckUp } from '../../services/bangumi-service';
+import { BangumiService, Bangumi, Seeker, BangumiCheckUp, BangumiCheckUpIntent } from '../../services/bangumi-service';
 
 @Component({
   selector: 'box',
@@ -13,7 +13,7 @@ export class Box {
   @Input() bangumi = <Bangumi>null;
   @Input() allSeekers: Seeker[];
   @Output() bangumiChange: EventEmitter<Bangumi> = new EventEmitter();
-  @Output() checkedUp: EventEmitter<Promise<BangumiCheckUp[]>> = new EventEmitter();
+  @Output() checkedUp: EventEmitter<BangumiCheckUpIntent>= new EventEmitter();
   @Output() openEdit: EventEmitter<Bangumi> = new EventEmitter();
   loadingCurEpi: boolean = false;
 
@@ -24,7 +24,12 @@ export class Box {
 
   doCheckUp() {
     let p = this.bangumiSvc.getBangumiCheckUp(this.bangumi);
-    this.checkedUp.emit(p);
+    let checkUpIntent: BangumiCheckUpIntent = {
+      p,
+      bangumi: this.bangumi,
+      episode: null
+    };
+    this.checkedUp.emit(checkUpIntent);
   }
 
   doPlus() {

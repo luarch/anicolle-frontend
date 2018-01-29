@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, RequestOptions, Headers, Response } from "@angular/http";
+import { Http, RequestOptions, Headers, Response, URLSearchParams } from "@angular/http";
 import { SettingService, Setting } from "./setting-service";
 import { Utils } from "../utils";
 import { Observable } from 'rxjs/Rx';
@@ -27,6 +27,12 @@ export interface BangumiCheckUp {
 }
 
 export class ParseSettingError extends Error {}
+
+export class BangumiCheckUpIntent {
+    p: Promise<BangumiCheckUp[]>;
+    bangumi: Bangumi;
+    episode: number;
+}
 
 @Injectable()
 export class BangumiService {
@@ -101,9 +107,14 @@ export class BangumiService {
     });
   }
 
-  getBangumiCheckUp = (b: Bangumi): Promise<BangumiCheckUp[]> => {
+  getBangumiCheckUp = (b: Bangumi, episode: number=null): Promise<BangumiCheckUp[]> => {
     return new Promise<BangumiCheckUp[]>((resolve, reject) => {
       let requestOptions = this._getRequestOptions("chkup/"+b.id);
+      if(episode!=null) {
+        let urlParams = new URLSearchParams();
+        urlParams.append("episode", episode.toString());
+        requestOptions.params = urlParams;
+      }
 
       this.http.get(requestOptions.url, requestOptions)
       .catch(this.handleError)

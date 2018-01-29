@@ -11,6 +11,7 @@ import { SettingService, Setting } from '../../services/setting-service';
 })
 export class SettingsPage {
   setting: Setting;
+  appVersion: String;
   @Output() saved: EventEmitter<any> = new EventEmitter();
   @Output() cancelled: EventEmitter<any> = new EventEmitter();
 
@@ -19,6 +20,7 @@ export class SettingsPage {
     private settingSvc: SettingService
   ) {
     this.setting = settingSvc.getSetting();
+    this.appVersion = CONSTANTS.VERSION;
   }
 
   doSave() {
