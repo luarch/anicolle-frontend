@@ -6,7 +6,7 @@
     <h3 *ngIf="loadingInd">Checking Updates...</h3>
     <h3 *ngIf="!loadingInd && !hasError && !data?.length">No Update</h3>
     <h3 *ngIf="!loadingInd && hasError">Update Error</h3>
-    <h4 *ngIf="!loadingInd && !hasError && intent">
+    <h4 *ngIf="!loadingInd && !hasError && intent!=null">
       <b>{{intent.bangumi.name}} ({{intent.episode}})</b>
       <button class="button is-small is-outlined next-episode" (click)="checkNextEpisode()">
         Next episode &gt;
