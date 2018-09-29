@@ -10,31 +10,37 @@ import { UpdateModalComponent } from '../update-modal/update-modal.component';
 import { Utils } from '../../utils';
 
 @Pipe({
-  name: "bangumiSearch",
+  name: 'bangumiSearch',
 })
 export class BangumiSearchPipe implements PipeTransform {
   transform(value: Bangumi[], keyword: string): Bangumi[] {
-    if(!value) return value;
-    if(!keyword) {
-      for(let b of value) {
+    if (!value) {
+      return value;
+    }
+    if (!keyword) {
+      for (const b of value) {
         b.hide = false;
       }
       return value;
     } else {
       keyword = keyword.trim();
     }
-    let on_air_day_match = keyword.match(/^w(\d)$/i);
-    for(let b of value) {
+    const on_air_day_match = keyword.match(/^w(\d)$/i);
+    const on_air_match = keyword.match(/^!oa$/);
+    for (const b of value) {
       b.hide = true;
 
-      if(b.name.toLowerCase().includes(keyword.toLowerCase())) {
+      if (b.name.toLowerCase().includes(keyword.toLowerCase())) {
         // General Search
         b.hide = false;
-      } else if(b.name_pinyin.includes(keyword.toLowerCase())) {
+      } else if (b.name_pinyin.includes(keyword.toLowerCase())) {
         // Pinyin Search
         b.hide = false;
-      } else if(on_air_day_match && on_air_day_match[1] === b.on_air_day.toString()) {
+      } else if (on_air_day_match && on_air_day_match[1] === b.on_air_day.toString()) {
         // On_air_day filter
+        b.hide = false;
+      } else if (on_air_match && b.on_air_day >= 1 && b.on_air_day <= 7) {
+        // On_air_filter
         b.hide = false;
       }
     }
@@ -45,7 +51,7 @@ export class BangumiSearchPipe implements PipeTransform {
 @Component({
   selector: 'mainboard',
   templateUrl: './mainboard.html',
-  styleUrls: ['./mainboard.scss']
+  styleUrls: ['./mainboard.scss'],
 })
 export class Mainboard implements OnInit {
   bangumis: Bangumi[] = [];
@@ -61,9 +67,9 @@ export class Mainboard implements OnInit {
     public utils: Utils,
     private bangumiSvc: BangumiService,
     private hotkeySvc: HotkeysService,
-    private zone: NgZone
+    private zone: NgZone,
   ) {
-    this.hotkeySvc.add(new Hotkey(['meta+f', 'ctrl+f'], (event: KeyboardEvent): boolean=> {
+    this.hotkeySvc.add(new Hotkey(['meta+f', 'ctrl+f'], (event: KeyboardEvent): boolean => {
       this.searchBox.doFocus();
       this.mobileSearchBox.doFocus();
       return false;
