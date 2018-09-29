@@ -1,7 +1,7 @@
 <section class="section mainboard-header">
   <div class="container">
     <search-box [(keyword)]="keyword"></search-box>
-    <div class="statistic-notes is-pulled-right">
+    <div class="statistic-notes is-pulled-right" *ngIf="!loading">
       <b>{{utils.getCurrentWeekDay()}}</b>. You have {{bangumis?.length}} bangumis.
     </div>
     <div class="is-clearfix"></div>
@@ -9,14 +9,21 @@
 </section>
 
 <section class="section">
-  <div class="container">
+  <div class="container" *ngIf="!loading">
     <box *ngFor="let bangumi of (bangumis | bangumiSearch: keyword); index as i; trackBy: bangumiTrackBy" [(bangumi)]="bangumis[i]" [allSeekers]="seekers" (openEdit)="onOpenEdit($event)" (checkedUp)="onCheckedUp($event)"></box>
     <div class="is-clearfix"></div>
+  </div>
+  <div class="container hero-text" *ngIf="loading">
+    <h2 class="is-unselectable">. . .</h2>
+  </div>
+  <div class="container hero-text" *ngIf="!loading && bangumis?.length == 0">
+    <div class="button is-primary plus-button" (click)="doAddButtonClick()">+</div>
+    <h2 class="is-unselectable">add a bangumi</h2>
   </div>
 </section>
 
 <section class="section mainboard-footer">
-  <div class="container">
+  <div class="container" *ngIf="!loading && bangumis?.length > 0">
     <div class="button is-primary plus-button is-pulled-right" (click)="doAddButtonClick()">+</div>
     <div class="is-clearfix"></div>
   </div>

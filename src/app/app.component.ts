@@ -22,15 +22,15 @@ export class AppComponent {
     this.checkConnectivity();
 
     // Enable :active styles
-    document.addEventListener("touchstart", function(){}, true);
+    document.addEventListener('touchstart', function(){}, true);
   }
 
   checkConnectivity() {
-    this.bangumiSvc.getCheckPoint().then(()=>{
+    this.bangumiSvc.getCheckPoint().then(() => {
       this.pageState = CONSTANTS.PAGE_STATE.HOME;
-    }).catch(()=>{
+    }).catch(() => {
       this.pageState = CONSTANTS.PAGE_STATE.CONNECTION_ERROR;
-    })
+    });
   }
 
   goToSettings() {

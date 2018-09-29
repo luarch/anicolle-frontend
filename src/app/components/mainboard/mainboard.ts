@@ -48,8 +48,9 @@ export class BangumiSearchPipe implements PipeTransform {
   styleUrls: ['./mainboard.scss']
 })
 export class Mainboard implements OnInit {
-  bangumis: Bangumi[];
-  keyword: string = "";
+  bangumis: Bangumi[] = [];
+  loading = false;
+  keyword = '';
   @Output() error: EventEmitter<Error> = new EventEmitter();
   @ViewChild(SearchBox) private searchBox: SearchBox;
   @ViewChild(MobileSearchBox) private mobileSearchBox: MobileSearchBox;
@@ -62,7 +63,7 @@ export class Mainboard implements OnInit {
     private hotkeySvc: HotkeysService,
     private zone: NgZone
   ) {
-    this.hotkeySvc.add(new Hotkey(["meta+f", "ctrl+f"], (event: KeyboardEvent): boolean=> {
+    this.hotkeySvc.add(new Hotkey(['meta+f', 'ctrl+f'], (event: KeyboardEvent): boolean=> {
       this.searchBox.doFocus();
       this.mobileSearchBox.doFocus();
       return false;
@@ -78,10 +79,12 @@ export class Mainboard implements OnInit {
   }
 
   doLoad() {
+    this.loading = true;
     this.bangumiSvc.getAllBangumis()
     .then((data) => {
-      this.zone.run(()=>{
+      this.zone.run(() => {
         this.bangumis = data;
+        this.loading = false;
       });
     })
     .catch(this.handleError);
@@ -93,7 +96,7 @@ export class Mainboard implements OnInit {
   }
 
   focusOnSearchbar() {
-    console.log("Try focus");
+    console.log('Try focus');
   }
 
   onOpenEdit(b: Bangumi) {

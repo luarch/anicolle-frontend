@@ -17,3 +17,16 @@
 .mainboard-footer {
   padding-bottom: 120px;
 }
+
+.hero-text {
+  margin-top: 20px;
+  text-align: center;
+  color: $grey-light;
+  font-size: 3em;
+  .plus-button {
+    font-size: 100px;
+    line-height: 100px;
+    width: 100px;
+    height: 100px;
+  }
+}
