@@ -24,5 +24,5 @@ export const CONSTANTS = {
     {value: 9, day: 'N/A'},
     {value: 0, day: 'Fin'},
   ],
-  VERSION: "0.5"
-}
+  VERSION: '0.6'
+};
