@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, Renderer, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, Renderer, ElementRef, ViewChild, OnInit, AfterContentInit } from '@angular/core';
 
 import { Utils } from '../../utils';
 
@@ -20,7 +20,7 @@ let template = `
   template,
   styleUrls: ['./mobile-search-box.scss']
 })
-export class MobileSearchBox implements OnInit, AfterViewInit {
+export class MobileSearchBox implements OnInit, AfterContentInit {
   @Input() keyword: string;
   @Output() keywordChange: EventEmitter<string> = new EventEmitter();
   @ViewChild('mobileSearchbar') mobileSearchbar: ElementRef;
@@ -44,10 +44,13 @@ export class MobileSearchBox implements OnInit, AfterViewInit {
 
   ngOnInit() {}
 
-  ngAfterViewInit(): void {
-    if (window.location.hash.match(/^#!oa$/)) {
-      this.insertKeyword('!oa');
-    }
+  ngAfterContentInit(): void {
+    setTimeout(() => { // Tick to avoid state change error
+      // Auto insert '!oa' quick command
+      if (window.location.hash.match(/^#!oa$/)) {
+        this.insertKeyword('!oa');
+      }
+    }, 0);
   }
 
   public doFocus() {
